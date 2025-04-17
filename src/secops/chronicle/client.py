@@ -89,6 +89,8 @@ from secops.chronicle.models import (
 from secops.chronicle.nl_search import translate_nl_to_udm, nl_search as _nl_search
 from secops.chronicle.gemini import query_gemini as _query_gemini, opt_in_to_gemini as _opt_in_to_gemini, GeminiResponse
 
+from secops.chronicle.parser import get_parser as _get_parser
+
 class ValueType(Enum):
     """Chronicle API value types."""
     ASSET_IP_ADDRESS = "ASSET_IP_ADDRESS"
@@ -1416,3 +1418,10 @@ class ChronicleClient:
             page_size=page_size,
             page_token=page_token
         ) 
+
+    
+    def get_parser(
+           self,
+           log_type: str
+    ) -> str:
+      return _get_parser(self,log_type)
